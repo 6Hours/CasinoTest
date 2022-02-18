@@ -10,6 +10,7 @@ namespace Test.UI
     public class AgreementScreen : BaseScreen
     {
         [SerializeField] private Button showTermsOfUse;
+        [SerializeField] private Button playButton;
         [SerializeField] private Toggle agreeToggle;
 
         public Action OnShowClick;
@@ -17,7 +18,10 @@ namespace Test.UI
         public override void Initilize()
         {
             showTermsOfUse.onClick.AddListener(() => OnShowClick?.Invoke());
-            agreeToggle.onValueChanged.AddListener((value) => { if (value) AgreeClick(); });
+            playButton.onClick.AddListener(() =>
+            {
+                if (agreeToggle.isOn) AgreeClick();
+            });
         }
 
         public override void Show()
